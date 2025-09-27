@@ -1,6 +1,6 @@
 # Backend
 All requirements and project information are presented at [`pyproject.toml`](pyproject.toml)
-Add `.env` file with variable `DATABASE_URL` or set it manually in [database](src/database/core.py)
+Add `.env` file with variable `DATABASE_URL` or set it manually in [`database`](src/database/core.py)
 
 To run the project using [`uv`](https://docs.astral.sh/uv/)
 ```bash
