@@ -26,6 +26,10 @@ async def get_many_news(
 ) -> list[model.News] | bool:
     return await service.get_many_news(publish_date, is_published, limit)
 
+@router.get("/all")
+async def get_many_news() -> list[model.News] | bool:
+    return await service.get_all_news()
+
 @router.post("/")
 async def post_news(news: model.News) -> bool:
     return await service.post_news(news)

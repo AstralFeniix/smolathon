@@ -100,6 +100,36 @@ async def get_many_news(
 
     return news if news else False
 
+async def get_all_news() -> list[News] | bool:
+    news = None
+
+    with postgres.connect(DATABASE_URL) as connection:
+        with connection.cursor() as cur:
+            try:
+                cur.execute(
+                    "SELECT * FROM news"
+                )
+                news_records = cur.fetchall()
+
+                if news_records:
+                    news = list(
+                        map(
+                            lambda news: News(
+                                    id=news[0],
+                                    title=news[1],
+                                    content=news[2],
+                                    publish_date=news[3],
+                                    image_url=news[4],
+                                    is_published=news[5]
+                            ), news_records
+                        )
+                    )
+
+            except Exception as e:
+                logging.error(f"Failed to select (many) from `news` database: {e}")
+
+    return news if news else False
+
 async def patch_news(
     id: int,
     title: str,
