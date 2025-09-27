@@ -3,9 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .api import register_routes
 
-
+# FastAPI application instance
 app = FastAPI()
 
+# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,4 +15,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-register_routes(app)
+# Register all routers
+register_routers(app)

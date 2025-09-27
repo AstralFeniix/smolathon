@@ -8,7 +8,7 @@ from src.fines.controller import router as fines_router
 from src.services.controller import router as services_router
 from src.evacuations.controller import router as evacuations_router
 
-
+# All routers
 routers = (
     users_router,
     accidents_router,
@@ -19,7 +19,7 @@ routers = (
     evacuations_router,
 )
 
-
-def register_routes(app: FastAPI):
+# Routers registrations
+def register_routers(app: FastAPI):
     for router in routers:
         app.include_router(router)
